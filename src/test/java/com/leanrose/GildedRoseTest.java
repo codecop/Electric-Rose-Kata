@@ -1,7 +1,10 @@
-package com.gildedrose;
+package com.leanrose;
 
 import org.hamcrest.Matcher;
 import org.junit.Test;
+
+import com.leanrose.GildedRose;
+import com.leanrose.Item;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.not;

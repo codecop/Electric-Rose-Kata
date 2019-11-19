@@ -1,4 +1,6 @@
-package com.gildedrose;
+package com.leanrose;
+
+import com.leanrose.Item;
 
 public interface ItemSetter {
 

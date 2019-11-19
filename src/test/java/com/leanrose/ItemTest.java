@@ -1,9 +1,11 @@
-package com.gildedrose;
+package com.leanrose;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
+
+import com.leanrose.Item;
 
 // 3 test cases for item itself
 public class ItemTest {

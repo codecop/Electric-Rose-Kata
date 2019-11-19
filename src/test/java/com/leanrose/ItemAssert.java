@@ -1,4 +1,4 @@
-package com.gildedrose;
+package com.leanrose;
 
 import org.hamcrest.Matcher;
 
