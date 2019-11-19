@@ -17,8 +17,6 @@ Pretty simple, right? Well this is where it gets interesting:
 
 	- Once the sell by date has passed, Quality degrades twice as fast
 	- The Quality of an item is never negative
-	- "Aged Brie" actually increases in Quality the older it gets
-	- The Quality of an item is never more than 50
 
 Feel free to make any changes to the UpdateQuality method and add any new code as long as everything
 still works correctly. However, do not alter the Item class or Items property as those belong to the

@@ -28,8 +28,8 @@ public class ItemTest {
 
     @Test
     public void shouldDisplayWithNameAndValues() {
-        Item item = new ItemBuilder().agedBrie().withSellIn(3).ofQuality(7);
-        assertThat(item.toString(), is("Aged Brie, 3, 7"));
+        Item item = new ItemBuilder().ordinaryItem().withSellIn(3).ofQuality(7);
+        assertThat(item.toString(), is("any ordinary item, 3, 7"));
     }
 
 }

@@ -33,10 +33,6 @@ public class ItemBuilder {
         return item("any ordinary item");
     }
 
-    public ItemBuilder agedBrie() {
-        return item("Aged Brie");
-    }
-
     ItemBuilder item(String itemName) {
         name = itemName;
         return this;

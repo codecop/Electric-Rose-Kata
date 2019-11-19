@@ -8,7 +8,6 @@ import com.leanrose.Item;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.not;
-import static org.hamcrest.number.OrderingComparison.greaterThan;
 import static org.hamcrest.number.OrderingComparison.lessThan;
 
 // 39 test cases for single item updates
@@ -120,99 +119,6 @@ public class GildedRoseTest {
         assertThat.qualityIs(equalTo(0));
     }
 
-    // "Aged Brie" actually increases in Quality the older it gets
-    @Test
-    public void shouldIncreaseQualityOfAgedBrie() {
-        int initialQuality = 17;
-        create.agedBrie().ofQuality(initialQuality);
-
-        updateQuality();
-
-        assertThat.qualityIs(greaterThan(initialQuality));
-    }
-
-    @Test
-    public void shouldIncreaseQualityOfExpiredAgedBrieTwiceAsFast() {
-        int initialQuality = 21;
-        create.expired().agedBrie().ofQuality(initialQuality);
-
-        updateQuality();
-
-        assertThat.qualityIs(equalTo(initialQuality + 2));
-    }
-
-    // boundary
-    @Test
-    public void shouldIncreaseQualityOfAgedBrieOnLastDayStillByOne() {
-        int initialQuality = 19;
-        create.almostExpired().agedBrie().ofQuality(initialQuality);
-
-        updateQuality();
-
-        assertThat.qualityIs(equalTo(initialQuality + 1));
-    }
-
-    // boundary
-    @Test
-    public void shouldIncreaseQualityOfAgedBrieOnSellDateAlreadyByTwo() {
-        int initialQuality = 18;
-        create.justExpired().agedBrie().ofQuality(initialQuality);
-
-        updateQuality();
-
-        assertThat.qualityIs(equalTo(initialQuality + 2));
-    }
-
-    // The Quality of an item is never more than 50
-    @Test
-    public void shouldNotIncreaseQualityOfAgedBrieAboveMax() {
-        create.agedBrie().ofMaxQuality();
-
-        updateQuality();
-
-        assertThat.qualityIs(not(greaterThan(50)));
-    }
-
-    @Test
-    public void shouldNotIncreaseQualityOfExpiredAgedBrieWithMaxQualityAboveMax() {
-        create.expired().agedBrie().ofMaxQuality();
-
-        updateQuality();
-
-        assertThat.qualityIs(not(greaterThan(50)));
-    }
-
-    // boundary
-    @Test
-    public void shouldNotIncreaseQualityOfExpiredAgedBriedWithAlmostMaxQualityAboveMax() {
-        create.expired().agedBrie().ofQuality(49);
-
-        updateQuality();
-
-        assertThat.qualityIs(not(greaterThan(50)));
-        assertThat.qualityIs(maximal());
-    }
-
-    // boundary
-    @Test
-    public void shouldIncreaseQualityOfAgedBrieUptoMax() {
-        create.agedBrie().ofQuality(49);
-
-        updateQuality();
-
-        assertThat.qualityIs(maximal());
-    }
-
-    // boundary
-    @Test
-    public void shouldIncreaseQualityOfExpiredAgedBrieUptoMax() {
-        create.expired().agedBrie().ofQuality(48);
-
-        updateQuality();
-
-        assertThat.qualityIs(maximal());
-    }
-
     // --- infrastructure
 
     private Item item;
@@ -242,10 +148,6 @@ public class GildedRoseTest {
 
     protected Matcher<Integer> negative() {
         return lessThan(0);
-    }
-
-    private Matcher<Integer> maximal() {
-        return equalTo(50);
     }
 
     private Matcher<Integer> increasedBy(int number) {
