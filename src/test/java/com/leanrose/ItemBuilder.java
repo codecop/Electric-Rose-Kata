@@ -41,14 +41,6 @@ public class ItemBuilder {
         return item("Sulfuras, Hand of Ragnaros");
     }
 
-    public ItemBuilder backstagePass() {
-        return item("Backstage passes to a TAFKAL80ETC concert");
-    }
-
-    public ItemBuilder conjuredItem() {
-        return item("Conjured Mana Cake");
-    }
-
     ItemBuilder item(String itemName) {
         name = itemName;
         return this;
