@@ -213,36 +213,6 @@ public class GildedRoseTest {
         assertThat.qualityIs(maximal());
     }
 
-    // "Sulfuras", being a legendary item, never has to be sold or decreases in Quality
-    @Test
-    public void shouldNotDecreaseSellInOfSulfuras() {
-        int initialSellIn = 5;
-        create.sulfuras().toSellIn(initialSellIn);
-
-        updateQuality();
-
-        assertThat.sellInIs(equalTo(initialSellIn));
-    }
-
-    @Test
-    public void shouldNotDecreaseQualityOfSulfuras() {
-        create.sulfuras().item();
-
-        updateQuality();
-
-        assertThat.qualityIs(unchanged());
-    }
-
-    @Test
-    public void shouldNotDecreaseQualityOfExpiredSulfuras() {
-        int legendaryQuality = 80;
-        create.expired().sulfuras().ofQuality(legendaryQuality);
-
-        updateQuality();
-
-        assertThat.qualityIs(equalTo(legendaryQuality));
-    }
-
     // --- infrastructure
 
     private Item item;
@@ -272,10 +242,6 @@ public class GildedRoseTest {
 
     protected Matcher<Integer> negative() {
         return lessThan(0);
-    }
-
-    private Matcher<Integer> unchanged() {
-        return equalTo(create.initialQuality());
     }
 
     private Matcher<Integer> maximal() {

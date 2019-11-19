@@ -37,10 +37,6 @@ public class ItemBuilder {
         return item("Aged Brie");
     }
 
-    public ItemBuilder sulfuras() {
-        return item("Sulfuras, Hand of Ragnaros");
-    }
-
     ItemBuilder item(String itemName) {
         name = itemName;
         return this;
