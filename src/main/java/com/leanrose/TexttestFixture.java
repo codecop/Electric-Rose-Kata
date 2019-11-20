@@ -2,13 +2,13 @@ package com.leanrose;
 
 public class TexttestFixture {
     public static void main(String[] args) {
-        System.out.println("OMGHAI!");
+        System.out.println("BZZ ZZZ!");
 
         Battery[] batteries = new Battery[] { //
-                new Battery("+5 Dexterity Vest", 10, 20), //
-                new Battery("Elixir of the Mongoose", 5, 7)}; //
+                new Battery("Samsung Lithium-ion", 10, 20), //
+                new Battery("Budget Nickel Cadmium", 5, 7)}; //
 
-        GildedRose app = new GildedRose(batteries);
+        ElectricRose app = new ElectricRose(batteries);
 
         int times = 2;
         if (args.length > 0) {

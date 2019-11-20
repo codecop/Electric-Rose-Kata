@@ -3,14 +3,14 @@ package com.leanrose;
 import org.hamcrest.Matcher;
 import org.junit.Test;
 
-import com.leanrose.GildedRose;
+import com.leanrose.ElectricRose;
 import com.leanrose.Battery;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.number.OrderingComparison.lessThan;
 
-public class GildedRoseTest {
+public class ElectricRoseTest {
 
     // After each usage, our system lowers both values (for every battery)
     @Test
@@ -125,19 +125,19 @@ public class GildedRoseTest {
     private final BatteryBuilder create = new BatteryBuilder(new BatterySetter() {
         @Override
         public void setBattery(Battery battery) {
-            GildedRoseTest.this.battery = battery;
+            ElectricRoseTest.this.battery = battery;
         }
     });
 
     private void updateCharge() {
-        GildedRose gildedRose = new GildedRose(new Battery[] { battery });
-        gildedRose.updateCharge();
+        ElectricRose electricRose = new ElectricRose(new Battery[] { battery });
+        electricRose.updateCharge();
     }
 
     private final BatteryAssert assertThat = new BatteryAssert(new BatteryGetter() {
         @Override
         public Battery getBattery() {
-            return GildedRoseTest.this.battery;
+            return ElectricRoseTest.this.battery;
         }
     });
 

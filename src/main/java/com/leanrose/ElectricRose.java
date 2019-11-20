@@ -1,9 +1,9 @@
 package com.leanrose;
 
-class GildedRose {
+class ElectricRose {
     Battery[] batteries;
 
-    public GildedRose(Battery[] batteries) {
+    public ElectricRose(Battery[] batteries) {
         this.batteries = batteries;
     }
 
