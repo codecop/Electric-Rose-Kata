@@ -10,11 +10,11 @@ import com.leanrose.Battery;
 // 3 test cases for battery itself
 public class BatteryTest {
 
-    // All batteries have a SellIn value
+    // All batteries have a Usages value
     @Test
-    public void shouldHaveSellIn() {
-        Battery battery = new BatteryBuilder().ordinaryBattery().toSellIn(3);
-        assertThat(battery.sellIn, is(3));
+    public void shouldHaveUsages() {
+        Battery battery = new BatteryBuilder().ordinaryBattery().forUsages(3).battery();
+        assertThat(battery.usages, is(3));
         // in dynamic language an assert_responds_to is probably enough
     }
 
@@ -27,8 +27,8 @@ public class BatteryTest {
     }
 
     @Test
-    public void shouldDisplayWithNameAndValues() {
-        Battery battery = new BatteryBuilder().ordinaryBattery().withSellIn(3).ofQuality(7);
+    public void shouldDisplayWithTypeAndValues() {
+        Battery battery = new BatteryBuilder().ordinaryBattery().forUsages(3).ofQuality(7);
         assertThat(battery.toString(), is("any ordinary battery, 3, 7"));
     }
 

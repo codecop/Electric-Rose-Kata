@@ -10,14 +10,14 @@ public class TexttestFixture {
 
         GildedRose app = new GildedRose(batteries);
 
-        int days = 2;
+        int times = 2;
         if (args.length > 0) {
-            days = Integer.parseInt(args[0]) + 1;
+            times = Integer.parseInt(args[0]) + 1;
         }
 
-        for (int i = 0; i < days; i++) {
-            System.out.println("-------- day " + i + " --------");
-            System.out.println("name, sellIn, quality");
+        for (int i = 0; i < times; i++) {
+            System.out.println("-------- usage " + i + " --------");
+            System.out.println("type, usages, quality");
             for (Battery battery : batteries) {
                 System.out.println(battery);
             }

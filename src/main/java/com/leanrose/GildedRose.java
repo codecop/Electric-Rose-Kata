@@ -13,9 +13,9 @@ class GildedRose {
                 batteries[i].quality = batteries[i].quality - 1;
             }
 
-            batteries[i].sellIn = batteries[i].sellIn - 1;
+            batteries[i].usages = batteries[i].usages - 1;
 
-            if (batteries[i].sellIn < 0) {
+            if (batteries[i].usages < 0) {
                 if (batteries[i].quality > 0) {
                     batteries[i].quality = batteries[i].quality - 1;
                 }

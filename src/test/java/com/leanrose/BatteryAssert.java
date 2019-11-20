@@ -16,8 +16,8 @@ public class BatteryAssert {
         assertThat(batteryGetter.getBattery().quality, matcher);
     }
 
-    public void sellInIs(Matcher<Integer> matcher) {
-        assertThat(batteryGetter.getBattery().sellIn, matcher);
+    public void usagesAre(Matcher<Integer> matcher) {
+        assertThat(batteryGetter.getBattery().usages, matcher);
     }
 
 }

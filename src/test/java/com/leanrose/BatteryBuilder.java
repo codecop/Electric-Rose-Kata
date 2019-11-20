@@ -16,8 +16,8 @@ public class BatteryBuilder {
 
     private final BatterySetter batterySetter;
 
-    private String name;
-    private int sellIn = FRESH;
+    private String type;
+    private int usages = FRESH;
     private int quality = 10;
 
     public BatteryBuilder() {
@@ -32,29 +32,25 @@ public class BatteryBuilder {
         return battery("any ordinary battery");
     }
 
-    BatteryBuilder battery(String batteryName) {
-        name = batteryName;
+    BatteryBuilder battery(String batteryType) {
+        type = batteryType;
         return this;
     }
 
     public BatteryBuilder almostExpired() {
-        return withSellIn(1);
+        return forUsages(1);
     }
 
     public BatteryBuilder justExpired() {
-        return withSellIn(0);
+        return forUsages(0);
     }
 
     public BatteryBuilder expired() {
-        return withSellIn(-3);
+        return forUsages(-3);
     }
 
-    public Battery toSellIn(int days) {
-        return withSellIn(days).battery();
-    }
-
-    public BatteryBuilder withSellIn(int days) {
-        sellIn = days;
+    public BatteryBuilder forUsages(int times) {
+        usages = times;
         return this;
     }
 
@@ -76,7 +72,7 @@ public class BatteryBuilder {
     }
 
     private Battery build() {
-        return new Battery(name, sellIn, quality);
+        return new Battery(type, usages, quality);
     }
 
     private Battery set(Battery battery) {

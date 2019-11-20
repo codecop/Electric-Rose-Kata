@@ -2,20 +2,20 @@ package com.leanrose;
 
 public class Battery {
 
-    public String name;
+    public String type;
 
-    public int sellIn;
+    public int usages;
 
     public int quality;
 
-    public Battery(String name, int sellIn, int quality) {
-        this.name = name;
-        this.sellIn = sellIn;
+    public Battery(String type, int usages, int quality) {
+        this.type = type;
+        this.usages = usages;
         this.quality = quality;
     }
 
     @Override
     public String toString() {
-        return this.name + ", " + this.sellIn + ", " + this.quality;
+        return this.type + ", " + this.usages + ", " + this.quality;
     }
 }

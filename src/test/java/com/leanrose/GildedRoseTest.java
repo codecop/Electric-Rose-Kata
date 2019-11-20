@@ -12,16 +12,16 @@ import static org.hamcrest.number.OrderingComparison.lessThan;
 
 public class GildedRoseTest {
 
-    // At the end of each day our system lowers both values (for every battery)
+    // After each usage, our system lowers both values (for every battery)
     @Test
-    public void shouldDecreaseSellInOfOrdinaryBattery() {
-        int initialSellIn = 5;
-        create.ordinaryBattery().toSellIn(initialSellIn);
+    public void shouldDecreaseUsagesOfOrdinaryBattery() {
+        int initialUsages = 5;
+        create.ordinaryBattery().forUsages(initialUsages).battery();
 
         updateQuality();
 
-        assertThat.sellInIs(lessThan(initialSellIn));
-        assertThat.sellInIs(equalTo(initialSellIn - 1));
+        assertThat.usagesAre(lessThan(initialUsages));
+        assertThat.usagesAre(equalTo(initialUsages - 1));
     }
 
     @Test
@@ -33,7 +33,7 @@ public class GildedRoseTest {
         assertThat.qualityIs(decreasedBy(1));
     }
 
-    // At the end of each day our system lowers both values *for every battery*
+    // After each usage, our system lowers both values *for every battery*
     // TODO add test that update iterates the whole array of batteries ;-)
 
     // Once the sell by date has passed, Quality degrades twice as fast
@@ -49,7 +49,7 @@ public class GildedRoseTest {
 
     // boundary
     @Test
-    public void shouldDecreaseQualityOfOrdinaryBatteryOnLastDayStillByOne() {
+    public void shouldDecreaseQualityOfOrdinaryBatteryOnUsageStillByOne() {
         int initialQuality = 9;
         create.almostExpired().ordinaryBattery().ofQuality(initialQuality);
 
