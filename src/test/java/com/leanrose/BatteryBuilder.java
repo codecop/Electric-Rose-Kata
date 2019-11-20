@@ -21,27 +21,27 @@ public class BatteryBuilder {
     }
 
     public BatteryBuilder almostExpired() {
-        return forUsages(1);
+        return withUsages(1);
     }
 
     public BatteryBuilder justExpired() {
-        return forUsages(0);
+        return withUsages(0);
     }
 
     public BatteryBuilder expired() {
-        return forUsages(-3);
+        return withUsages(-3);
     }
 
-    public BatteryBuilder forUsages(int times) {
+    public BatteryBuilder withUsages(int times) {
         usages = times;
         return this;
     }
 
-    public BatteryBuilder ofNoCharge() {
-        return withCharge(EMPTY);
+    public BatteryBuilder empty() {
+        return charged(EMPTY);
     }
 
-    public BatteryBuilder withCharge(int electricity) {
+    public BatteryBuilder charged(int electricity) {
         charge = electricity;
         return this;
     }
@@ -52,6 +52,10 @@ public class BatteryBuilder {
 
     public int initialCharge() {
         return charge;
+    }
+
+    public BatteryBuilder and() {
+        return this;
     }
 
 }

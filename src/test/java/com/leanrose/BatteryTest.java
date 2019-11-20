@@ -13,7 +13,7 @@ public class BatteryTest {
     // All batteries have a Usages value
     @Test
     public void shouldHaveUsages() {
-        Battery battery = new BatteryBuilder().ordinaryBattery().forUsages(3).build();
+        Battery battery = new BatteryBuilder().ordinaryBattery().withUsages(3).build();
         assertThat(battery.usages, is(3));
         // in dynamic language an assert_responds_to is probably enough
     }
@@ -21,14 +21,14 @@ public class BatteryTest {
     // All batteries have a Charge value
     @Test
     public void shouldHaveCharge() {
-        Battery battery = new BatteryBuilder().ordinaryBattery().withCharge(7).build();
+        Battery battery = new BatteryBuilder().ordinaryBattery().charged(7).build();
         assertThat(battery.charge, is(7));
         // in dynamic language an assert_responds_to is probably enough
     }
 
     @Test
     public void shouldDisplayWithTypeAndValues() {
-        Battery battery = new BatteryBuilder().ordinaryBattery().forUsages(3).withCharge(7).build();
+        Battery battery = new BatteryBuilder().ordinaryBattery().withUsages(3).charged(7).build();
         assertThat(battery.toString(), is("an ordinary battery, 3, 7"));
     }
 

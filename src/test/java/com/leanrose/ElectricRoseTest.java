@@ -16,7 +16,7 @@ public class ElectricRoseTest {
     @Test
     public void shouldDecreaseUsagesOfOrdinaryBattery() {
         int initialUsages = 5;
-        create.ordinaryBattery().forUsages(initialUsages);
+        create.ordinaryBattery().withUsages(initialUsages);
 
         updateCharge();
 
@@ -36,11 +36,11 @@ public class ElectricRoseTest {
     // After each usage, our system lowers both values *for every battery*
     // TODO add test that update iterates the whole array of batteries ;-)
 
-    // Once the number of usages have passed, Charge degrades twice as fast
+    // Once the number of usages has passed, Charge degrades twice as fast
     @Test
     public void shouldDecreaseChargeOfExpiredOrdinaryBatteryTwiceAsFast() {
         int initialCharge = 13;
-        create.expired().ordinaryBattery().withCharge(initialCharge);
+        create.expired().ordinaryBattery().charged(initialCharge);
 
         updateCharge();
 
@@ -49,9 +49,9 @@ public class ElectricRoseTest {
 
     // boundary
     @Test
-    public void shouldDecreaseChargeOfOrdinaryBatteryOnUsageStillByOne() {
+    public void shouldDecreaseChargeOfOrdinaryBatteryOnLastUsageStillByOne() {
         int initialCharge = 9;
-        create.almostExpired().ordinaryBattery().withCharge(initialCharge);
+        create.almostExpired().ordinaryBattery().charged(initialCharge);
 
         updateCharge();
 
@@ -62,7 +62,7 @@ public class ElectricRoseTest {
     @Test
     public void shouldDecreaseChargeOfOrdinaryBatteryOnZeroUsagesAlreadyByTwo() {
         int initialCharge = 8;
-        create.justExpired().ordinaryBattery().withCharge(initialCharge);
+        create.justExpired().ordinaryBattery().charged(initialCharge);
 
         updateCharge();
 
@@ -72,7 +72,7 @@ public class ElectricRoseTest {
     // The Charge of a battery is never negative
     @Test
     public void shouldNotDecreaseChargeOfOrdinaryBatteryBelowZero() {
-        create.ordinaryBattery().ofNoCharge();
+        create.empty().ordinaryBattery();
 
         updateCharge();
 
@@ -80,8 +80,8 @@ public class ElectricRoseTest {
     }
 
     @Test
-    public void shouldNotDecreaseChargeOfExpiredOrdinaryBatteryWithNoChargeBelowZero() {
-        create.expired().ordinaryBattery().ofNoCharge();
+    public void shouldNotDecreaseChargeOfExpiredEmptyOrdinaryBatteryBelowZero() {
+        create.expired().and().empty().ordinaryBattery();
 
         updateCharge();
 
@@ -91,7 +91,7 @@ public class ElectricRoseTest {
     // boundary
     @Test
     public void shouldNotDecreaseChargeOfExpiredOrdinaryBatteryWithOneChargeBelowZero() {
-        create.expired().ordinaryBattery().withCharge(1);
+        create.expired().ordinaryBattery().charged(1);
 
         updateCharge();
 
@@ -101,7 +101,7 @@ public class ElectricRoseTest {
     // boundary
     @Test
     public void shouldDecreaseChargeOfOrdinaryBatteryDownToZero() {
-        create.ordinaryBattery().withCharge(1);
+        create.ordinaryBattery().charged(1);
 
         updateCharge();
 
@@ -111,7 +111,7 @@ public class ElectricRoseTest {
     // boundary
     @Test
     public void shouldDecreaseChargeOfExpiredOrdinaryBatteryDownToZero() {
-        create.expired().ordinaryBattery().withCharge(2);
+        create.expired().ordinaryBattery().charged(2);
 
         updateCharge();
 
@@ -120,9 +120,9 @@ public class ElectricRoseTest {
 
     // --- infrastructure
 
-    private Battery battery;
-
     private final BatteryBuilder create = new BatteryBuilder();
+
+    private Battery battery;
 
     private void updateCharge() {
         battery = create.build();
@@ -133,15 +133,11 @@ public class ElectricRoseTest {
     private final BatteryAssert assertThat = new BatteryAssert(() -> battery);
 
     private Matcher<Integer> decreasedBy(int number) {
-        return increasedBy(-number);
+        return equalTo(create.initialCharge() - number);
     }
 
     private Matcher<Integer> negative() {
         return lessThan(0);
-    }
-
-    private Matcher<Integer> increasedBy(int number) {
-        return equalTo(create.initialCharge() + number);
     }
 
 }
