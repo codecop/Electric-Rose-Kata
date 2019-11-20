@@ -16,7 +16,7 @@ public class ElectricRoseTest {
     @Test
     public void shouldDecreaseUsagesOfOrdinaryBattery() {
         int initialUsages = 5;
-        create.ordinaryBattery().forUsages(initialUsages).battery();
+        create.ordinaryBattery().forUsages(initialUsages);
 
         updateCharge();
 
@@ -26,7 +26,7 @@ public class ElectricRoseTest {
 
     @Test
     public void shouldDecreaseChargeOfOrdinaryBattery() {
-        create.ordinaryBattery().battery();
+        create.ordinaryBattery();
 
         updateCharge();
 
@@ -40,7 +40,7 @@ public class ElectricRoseTest {
     @Test
     public void shouldDecreaseChargeOfExpiredOrdinaryBatteryTwiceAsFast() {
         int initialCharge = 13;
-        create.expired().ordinaryBattery().ofCharge(initialCharge);
+        create.expired().ordinaryBattery().withCharge(initialCharge);
 
         updateCharge();
 
@@ -51,7 +51,7 @@ public class ElectricRoseTest {
     @Test
     public void shouldDecreaseChargeOfOrdinaryBatteryOnUsageStillByOne() {
         int initialCharge = 9;
-        create.almostExpired().ordinaryBattery().ofCharge(initialCharge);
+        create.almostExpired().ordinaryBattery().withCharge(initialCharge);
 
         updateCharge();
 
@@ -62,7 +62,7 @@ public class ElectricRoseTest {
     @Test
     public void shouldDecreaseChargeOfOrdinaryBatteryOnZeroUsagesAlreadyByTwo() {
         int initialCharge = 8;
-        create.justExpired().ordinaryBattery().ofCharge(initialCharge);
+        create.justExpired().ordinaryBattery().withCharge(initialCharge);
 
         updateCharge();
 
@@ -91,7 +91,7 @@ public class ElectricRoseTest {
     // boundary
     @Test
     public void shouldNotDecreaseChargeOfExpiredOrdinaryBatteryWithOneChargeBelowZero() {
-        create.expired().ordinaryBattery().ofCharge(1);
+        create.expired().ordinaryBattery().withCharge(1);
 
         updateCharge();
 
@@ -101,7 +101,7 @@ public class ElectricRoseTest {
     // boundary
     @Test
     public void shouldDecreaseChargeOfOrdinaryBatteryDownToZero() {
-        create.ordinaryBattery().ofCharge(1);
+        create.ordinaryBattery().withCharge(1);
 
         updateCharge();
 
@@ -111,7 +111,7 @@ public class ElectricRoseTest {
     // boundary
     @Test
     public void shouldDecreaseChargeOfExpiredOrdinaryBatteryDownToZero() {
-        create.expired().ordinaryBattery().ofCharge(2);
+        create.expired().ordinaryBattery().withCharge(2);
 
         updateCharge();
 
@@ -122,24 +122,15 @@ public class ElectricRoseTest {
 
     private Battery battery;
 
-    private final BatteryBuilder create = new BatteryBuilder(new BatterySetter() {
-        @Override
-        public void setBattery(Battery battery) {
-            ElectricRoseTest.this.battery = battery;
-        }
-    });
+    private final BatteryBuilder create = new BatteryBuilder();
 
     private void updateCharge() {
+        battery = create.build();
         ElectricRose electricRose = new ElectricRose(new Battery[] { battery });
         electricRose.updateCharge();
     }
 
-    private final BatteryAssert assertThat = new BatteryAssert(new BatteryGetter() {
-        @Override
-        public Battery getBattery() {
-            return ElectricRoseTest.this.battery;
-        }
-    });
+    private final BatteryAssert assertThat = new BatteryAssert(() -> battery);
 
     private Matcher<Integer> decreasedBy(int number) {
         return increasedBy(-number);

@@ -1,23 +1,25 @@
 package com.leanrose;
 
+import java.util.function.Supplier;
+
 import org.hamcrest.Matcher;
 
 import static org.junit.Assert.assertThat;
 
 public class BatteryAssert {
 
-    private final BatteryGetter batteryGetter;
+    private final Supplier<Battery> batteryGetter;
 
-    public BatteryAssert(BatteryGetter batteryGetter) {
+    public BatteryAssert(Supplier<Battery> batteryGetter) {
         this.batteryGetter = batteryGetter;
     }
 
     public void chargeIs(Matcher<Integer> matcher) {
-        assertThat(batteryGetter.getBattery().charge, matcher);
+        assertThat(batteryGetter.get().charge, matcher);
     }
 
     public void usagesAre(Matcher<Integer> matcher) {
-        assertThat(batteryGetter.getBattery().usages, matcher);
+        assertThat(batteryGetter.get().usages, matcher);
     }
 
 }
