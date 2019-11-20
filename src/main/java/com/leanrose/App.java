@@ -1,6 +1,6 @@
 package com.leanrose;
 
-public class TexttestFixture {
+public class App {
     public static void main(String[] args) {
         System.out.println("BZZ ZZZ!");
 
