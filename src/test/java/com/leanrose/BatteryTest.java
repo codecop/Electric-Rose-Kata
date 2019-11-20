@@ -18,18 +18,18 @@ public class BatteryTest {
         // in dynamic language an assert_responds_to is probably enough
     }
 
-    // All batteries have a Quality value
+    // All batteries have a Charge value
     @Test
-    public void shouldHaveQuality() {
-        Battery battery = new BatteryBuilder().ordinaryBattery().ofQuality(7);
-        assertThat(battery.quality, is(7));
+    public void shouldHaveCharge() {
+        Battery battery = new BatteryBuilder().ordinaryBattery().ofCharge(7);
+        assertThat(battery.charge, is(7));
         // in dynamic language an assert_responds_to is probably enough
     }
 
     @Test
     public void shouldDisplayWithTypeAndValues() {
-        Battery battery = new BatteryBuilder().ordinaryBattery().forUsages(3).ofQuality(7);
-        assertThat(battery.toString(), is("any ordinary battery, 3, 7"));
+        Battery battery = new BatteryBuilder().ordinaryBattery().forUsages(3).ofCharge(7);
+        assertThat(battery.toString(), is("an ordinary battery, 3, 7"));
     }
 
 }

@@ -12,8 +12,8 @@ public class BatteryAssert {
         this.batteryGetter = batteryGetter;
     }
 
-    public void qualityIs(Matcher<Integer> matcher) {
-        assertThat(batteryGetter.getBattery().quality, matcher);
+    public void chargeIs(Matcher<Integer> matcher) {
+        assertThat(batteryGetter.getBattery().charge, matcher);
     }
 
     public void usagesAre(Matcher<Integer> matcher) {

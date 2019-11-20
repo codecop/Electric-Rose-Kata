@@ -18,104 +18,104 @@ public class GildedRoseTest {
         int initialUsages = 5;
         create.ordinaryBattery().forUsages(initialUsages).battery();
 
-        updateQuality();
+        updateCharge();
 
         assertThat.usagesAre(lessThan(initialUsages));
         assertThat.usagesAre(equalTo(initialUsages - 1));
     }
 
     @Test
-    public void shouldDecreaseQualityOfOrdinaryBattery() {
+    public void shouldDecreaseChargeOfOrdinaryBattery() {
         create.ordinaryBattery().battery();
 
-        updateQuality();
+        updateCharge();
 
-        assertThat.qualityIs(decreasedBy(1));
+        assertThat.chargeIs(decreasedBy(1));
     }
 
     // After each usage, our system lowers both values *for every battery*
     // TODO add test that update iterates the whole array of batteries ;-)
 
-    // Once the sell by date has passed, Quality degrades twice as fast
+    // Once the number of usages have passed, Charge degrades twice as fast
     @Test
-    public void shouldDecreaseQualityOfExpiredOrdinaryBatteryTwiceAsFast() {
-        int initialQuality = 13;
-        create.expired().ordinaryBattery().ofQuality(initialQuality);
+    public void shouldDecreaseChargeOfExpiredOrdinaryBatteryTwiceAsFast() {
+        int initialCharge = 13;
+        create.expired().ordinaryBattery().ofCharge(initialCharge);
 
-        updateQuality();
+        updateCharge();
 
-        assertThat.qualityIs(equalTo(initialQuality - 2));
+        assertThat.chargeIs(equalTo(initialCharge - 2));
     }
 
     // boundary
     @Test
-    public void shouldDecreaseQualityOfOrdinaryBatteryOnUsageStillByOne() {
-        int initialQuality = 9;
-        create.almostExpired().ordinaryBattery().ofQuality(initialQuality);
+    public void shouldDecreaseChargeOfOrdinaryBatteryOnUsageStillByOne() {
+        int initialCharge = 9;
+        create.almostExpired().ordinaryBattery().ofCharge(initialCharge);
 
-        updateQuality();
+        updateCharge();
 
-        assertThat.qualityIs(equalTo(initialQuality - 1));
+        assertThat.chargeIs(equalTo(initialCharge - 1));
     }
 
     // boundary
     @Test
-    public void shouldDecreaseQualityOfOrdinaryBatteryOnSellDateAlreadyByTwo() {
-        int initialQuality = 8;
-        create.justExpired().ordinaryBattery().ofQuality(initialQuality);
+    public void shouldDecreaseChargeOfOrdinaryBatteryOnZeroUsagesAlreadyByTwo() {
+        int initialCharge = 8;
+        create.justExpired().ordinaryBattery().ofCharge(initialCharge);
 
-        updateQuality();
+        updateCharge();
 
-        assertThat.qualityIs(equalTo(initialQuality - 2));
+        assertThat.chargeIs(equalTo(initialCharge - 2));
     }
 
-    // The Quality of a battery is never negative
+    // The Charge of a battery is never negative
     @Test
-    public void shouldNotDecreaseQualityOfOrdinaryBatteryBelowZero() {
-        create.ordinaryBattery().ofNoQuality();
+    public void shouldNotDecreaseChargeOfOrdinaryBatteryBelowZero() {
+        create.ordinaryBattery().ofNoCharge();
 
-        updateQuality();
+        updateCharge();
 
-        assertThat.qualityIs(not(negative()));
+        assertThat.chargeIs(not(negative()));
     }
 
     @Test
-    public void shouldNotDecreaseQualityOfExpiredOrdinaryBatteryWithNoQualityBelowZero() {
-        create.expired().ordinaryBattery().ofNoQuality();
+    public void shouldNotDecreaseChargeOfExpiredOrdinaryBatteryWithNoChargeBelowZero() {
+        create.expired().ordinaryBattery().ofNoCharge();
 
-        updateQuality();
+        updateCharge();
 
-        assertThat.qualityIs(not(negative()));
-    }
-
-    // boundary
-    @Test
-    public void shouldNotDecreaseQualityOfExpiredOrdinaryBatteryWithOneQualityBelowZero() {
-        create.expired().ordinaryBattery().ofQuality(1);
-
-        updateQuality();
-
-        assertThat.qualityIs(not(negative()));
+        assertThat.chargeIs(not(negative()));
     }
 
     // boundary
     @Test
-    public void shouldDecreaseQualityOfOrdinaryBatteryDownToZero() {
-        create.ordinaryBattery().ofQuality(1);
+    public void shouldNotDecreaseChargeOfExpiredOrdinaryBatteryWithOneChargeBelowZero() {
+        create.expired().ordinaryBattery().ofCharge(1);
 
-        updateQuality();
+        updateCharge();
 
-        assertThat.qualityIs(equalTo(0));
+        assertThat.chargeIs(not(negative()));
     }
 
     // boundary
     @Test
-    public void shouldDecreaseQualityOfExpiredOrdinaryBatteryDownToZero() {
-        create.expired().ordinaryBattery().ofQuality(2);
+    public void shouldDecreaseChargeOfOrdinaryBatteryDownToZero() {
+        create.ordinaryBattery().ofCharge(1);
 
-        updateQuality();
+        updateCharge();
 
-        assertThat.qualityIs(equalTo(0));
+        assertThat.chargeIs(equalTo(0));
+    }
+
+    // boundary
+    @Test
+    public void shouldDecreaseChargeOfExpiredOrdinaryBatteryDownToZero() {
+        create.expired().ordinaryBattery().ofCharge(2);
+
+        updateCharge();
+
+        assertThat.chargeIs(equalTo(0));
     }
 
     // --- infrastructure
@@ -129,9 +129,9 @@ public class GildedRoseTest {
         }
     });
 
-    private void updateQuality() {
+    private void updateCharge() {
         GildedRose gildedRose = new GildedRose(new Battery[] { battery });
-        gildedRose.updateQuality();
+        gildedRose.updateCharge();
     }
 
     private final BatteryAssert assertThat = new BatteryAssert(new BatteryGetter() {
@@ -150,7 +150,7 @@ public class GildedRoseTest {
     }
 
     private Matcher<Integer> increasedBy(int number) {
-        return equalTo(create.initialQuality() + number);
+        return equalTo(create.initialCharge() + number);
     }
 
 }

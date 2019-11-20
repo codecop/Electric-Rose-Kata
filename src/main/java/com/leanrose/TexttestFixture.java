@@ -17,12 +17,12 @@ public class TexttestFixture {
 
         for (int i = 0; i < times; i++) {
             System.out.println("-------- usage " + i + " --------");
-            System.out.println("type, usages, quality");
+            System.out.println("type, usages, charge");
             for (Battery battery : batteries) {
                 System.out.println(battery);
             }
             System.out.println();
-            app.updateQuality();
+            app.updateCharge();
         }
     }
 

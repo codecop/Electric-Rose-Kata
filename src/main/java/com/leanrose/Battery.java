@@ -6,16 +6,16 @@ public class Battery {
 
     public int usages;
 
-    public int quality;
+    public int charge;
 
-    public Battery(String type, int usages, int quality) {
+    public Battery(String type, int usages, int charge) {
         this.type = type;
         this.usages = usages;
-        this.quality = quality;
+        this.charge = charge;
     }
 
     @Override
     public String toString() {
-        return this.type + ", " + this.usages + ", " + this.quality;
+        return this.type + ", " + this.usages + ", " + this.charge;
     }
 }

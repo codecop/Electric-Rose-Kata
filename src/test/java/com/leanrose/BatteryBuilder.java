@@ -11,14 +11,14 @@ public class BatteryBuilder {
         }
     }
 
-    private static final int FRESH = 5;
-    private static final int NO_QUALITY = 0;
+    private static final int NEW = 5;
+    private static final int EMPTY = 0;
 
     private final BatterySetter batterySetter;
 
     private String type;
-    private int usages = FRESH;
-    private int quality = 10;
+    private int usages = NEW;
+    private int charge = 10;
 
     public BatteryBuilder() {
         batterySetter = new NullSetter();
@@ -29,7 +29,7 @@ public class BatteryBuilder {
     }
 
     public BatteryBuilder ordinaryBattery() {
-        return battery("any ordinary battery");
+        return battery("an ordinary battery");
     }
 
     BatteryBuilder battery(String batteryType) {
@@ -54,16 +54,16 @@ public class BatteryBuilder {
         return this;
     }
 
-    public Battery ofQuality(int number) {
-        return withQuality(number).battery();
+    public Battery ofCharge(int number) {
+        return withCharge(number).battery();
     }
 
-    public Battery ofNoQuality() {
-        return withQuality(NO_QUALITY).battery();
+    public Battery ofNoCharge() {
+        return withCharge(EMPTY).battery();
     }
 
-    private BatteryBuilder withQuality(int number) {
-        quality = number;
+    private BatteryBuilder withCharge(int number) {
+        charge = number;
         return this;
     }
 
@@ -72,7 +72,7 @@ public class BatteryBuilder {
     }
 
     private Battery build() {
-        return new Battery(type, usages, quality);
+        return new Battery(type, usages, charge);
     }
 
     private Battery set(Battery battery) {
@@ -80,8 +80,8 @@ public class BatteryBuilder {
         return battery;
     }
 
-    public int initialQuality() {
-        return quality;
+    public int initialCharge() {
+        return charge;
     }
 
 }
