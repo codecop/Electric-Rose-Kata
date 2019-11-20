@@ -4,11 +4,11 @@ public class TexttestFixture {
     public static void main(String[] args) {
         System.out.println("OMGHAI!");
 
-        Item[] items = new Item[] { //
-                new Item("+5 Dexterity Vest", 10, 20), //
-                new Item("Elixir of the Mongoose", 5, 7)}; //
+        Battery[] batteries = new Battery[] { //
+                new Battery("+5 Dexterity Vest", 10, 20), //
+                new Battery("Elixir of the Mongoose", 5, 7)}; //
 
-        GildedRose app = new GildedRose(items);
+        GildedRose app = new GildedRose(batteries);
 
         int days = 2;
         if (args.length > 0) {
@@ -18,8 +18,8 @@ public class TexttestFixture {
         for (int i = 0; i < days; i++) {
             System.out.println("-------- day " + i + " --------");
             System.out.println("name, sellIn, quality");
-            for (Item item : items) {
-                System.out.println(item);
+            for (Battery battery : batteries) {
+                System.out.println(battery);
             }
             System.out.println();
             app.updateQuality();

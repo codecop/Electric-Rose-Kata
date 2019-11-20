@@ -1,23 +1,23 @@
 package com.leanrose;
 
 class GildedRose {
-    Item[] items;
+    Battery[] batteries;
 
-    public GildedRose(Item[] items) {
-        this.items = items;
+    public GildedRose(Battery[] batteries) {
+        this.batteries = batteries;
     }
 
     public void updateQuality() {
-        for (int i = 0; i < items.length; i++) {
-            if (items[i].quality > 0) {
-                items[i].quality = items[i].quality - 1;
+        for (int i = 0; i < batteries.length; i++) {
+            if (batteries[i].quality > 0) {
+                batteries[i].quality = batteries[i].quality - 1;
             }
 
-            items[i].sellIn = items[i].sellIn - 1;
+            batteries[i].sellIn = batteries[i].sellIn - 1;
 
-            if (items[i].sellIn < 0) {
-                if (items[i].quality > 0) {
-                    items[i].quality = items[i].quality - 1;
+            if (batteries[i].sellIn < 0) {
+                if (batteries[i].quality > 0) {
+                    batteries[i].quality = batteries[i].quality - 1;
                 }
             }
         }

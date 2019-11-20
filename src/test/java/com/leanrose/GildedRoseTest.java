@@ -4,20 +4,19 @@ import org.hamcrest.Matcher;
 import org.junit.Test;
 
 import com.leanrose.GildedRose;
-import com.leanrose.Item;
+import com.leanrose.Battery;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.number.OrderingComparison.lessThan;
 
-// 39 test cases for single item updates
 public class GildedRoseTest {
 
-    // At the end of each day our system lowers both values (for every item)
+    // At the end of each day our system lowers both values (for every battery)
     @Test
-    public void shouldDecreaseSellInOfOrdinaryItem() {
+    public void shouldDecreaseSellInOfOrdinaryBattery() {
         int initialSellIn = 5;
-        create.ordinaryItem().toSellIn(initialSellIn);
+        create.ordinaryBattery().toSellIn(initialSellIn);
 
         updateQuality();
 
@@ -26,22 +25,22 @@ public class GildedRoseTest {
     }
 
     @Test
-    public void shouldDecreaseQualityOfOrdinaryItem() {
-        create.ordinaryItem().item();
+    public void shouldDecreaseQualityOfOrdinaryBattery() {
+        create.ordinaryBattery().battery();
 
         updateQuality();
 
         assertThat.qualityIs(decreasedBy(1));
     }
 
-    // At the end of each day our system lowers both values *for every item*
-    // TODO add test that update iterates the whole array of items ;-)
+    // At the end of each day our system lowers both values *for every battery*
+    // TODO add test that update iterates the whole array of batteries ;-)
 
     // Once the sell by date has passed, Quality degrades twice as fast
     @Test
-    public void shouldDecreaseQualityOfExpiredOrdinaryItemTwiceAsFast() {
+    public void shouldDecreaseQualityOfExpiredOrdinaryBatteryTwiceAsFast() {
         int initialQuality = 13;
-        create.expired().ordinaryItem().ofQuality(initialQuality);
+        create.expired().ordinaryBattery().ofQuality(initialQuality);
 
         updateQuality();
 
@@ -50,9 +49,9 @@ public class GildedRoseTest {
 
     // boundary
     @Test
-    public void shouldDecreaseQualityOfOrdinaryItemOnLastDayStillByOne() {
+    public void shouldDecreaseQualityOfOrdinaryBatteryOnLastDayStillByOne() {
         int initialQuality = 9;
-        create.almostExpired().ordinaryItem().ofQuality(initialQuality);
+        create.almostExpired().ordinaryBattery().ofQuality(initialQuality);
 
         updateQuality();
 
@@ -61,19 +60,19 @@ public class GildedRoseTest {
 
     // boundary
     @Test
-    public void shouldDecreaseQualityOfOrdinaryItemOnSellDateAlreadyByTwo() {
+    public void shouldDecreaseQualityOfOrdinaryBatteryOnSellDateAlreadyByTwo() {
         int initialQuality = 8;
-        create.justExpired().ordinaryItem().ofQuality(initialQuality);
+        create.justExpired().ordinaryBattery().ofQuality(initialQuality);
 
         updateQuality();
 
         assertThat.qualityIs(equalTo(initialQuality - 2));
     }
 
-    // The Quality of an item is never negative
+    // The Quality of a battery is never negative
     @Test
-    public void shouldNotDecreaseQualityOfOrdinaryItemBelowZero() {
-        create.ordinaryItem().ofNoQuality();
+    public void shouldNotDecreaseQualityOfOrdinaryBatteryBelowZero() {
+        create.ordinaryBattery().ofNoQuality();
 
         updateQuality();
 
@@ -81,18 +80,8 @@ public class GildedRoseTest {
     }
 
     @Test
-    public void shouldNotDecreaseQualityOfExpiredOrdinaryItemWithNoQualityBelowZero() {
-        create.expired().ordinaryItem().ofNoQuality();
-
-        updateQuality();
-
-        assertThat.qualityIs(not(negative()));
-    }
-
-    // boundary
-    @Test
-    public void shouldNotDecreaseQualityOfExpiredOrdinaryItemWithOneQualityBelowZero() {
-        create.expired().ordinaryItem().ofQuality(1);
+    public void shouldNotDecreaseQualityOfExpiredOrdinaryBatteryWithNoQualityBelowZero() {
+        create.expired().ordinaryBattery().ofNoQuality();
 
         updateQuality();
 
@@ -101,8 +90,18 @@ public class GildedRoseTest {
 
     // boundary
     @Test
-    public void shouldDecreaseQualityOfOrdinaryItemDownToZero() {
-        create.ordinaryItem().ofQuality(1);
+    public void shouldNotDecreaseQualityOfExpiredOrdinaryBatteryWithOneQualityBelowZero() {
+        create.expired().ordinaryBattery().ofQuality(1);
+
+        updateQuality();
+
+        assertThat.qualityIs(not(negative()));
+    }
+
+    // boundary
+    @Test
+    public void shouldDecreaseQualityOfOrdinaryBatteryDownToZero() {
+        create.ordinaryBattery().ofQuality(1);
 
         updateQuality();
 
@@ -111,8 +110,8 @@ public class GildedRoseTest {
 
     // boundary
     @Test
-    public void shouldDecreaseQualityOfExpiredOrdinaryItemDownToZero() {
-        create.expired().ordinaryItem().ofQuality(2);
+    public void shouldDecreaseQualityOfExpiredOrdinaryBatteryDownToZero() {
+        create.expired().ordinaryBattery().ofQuality(2);
 
         updateQuality();
 
@@ -121,32 +120,32 @@ public class GildedRoseTest {
 
     // --- infrastructure
 
-    private Item item;
+    private Battery battery;
 
-    protected final ItemBuilder create = new ItemBuilder(new ItemSetter() {
+    private final BatteryBuilder create = new BatteryBuilder(new BatterySetter() {
         @Override
-        public void setItem(Item item) {
-            GildedRoseTest.this.item = item;
+        public void setBattery(Battery battery) {
+            GildedRoseTest.this.battery = battery;
         }
     });
 
-    protected void updateQuality() {
-        GildedRose gildedRose = new GildedRose(new Item[] { item });
+    private void updateQuality() {
+        GildedRose gildedRose = new GildedRose(new Battery[] { battery });
         gildedRose.updateQuality();
     }
 
-    protected final ItemAssert assertThat = new ItemAssert(new ItemGetter() {
+    private final BatteryAssert assertThat = new BatteryAssert(new BatteryGetter() {
         @Override
-        public Item getItem() {
-            return GildedRoseTest.this.item;
+        public Battery getBattery() {
+            return GildedRoseTest.this.battery;
         }
     });
 
-    protected Matcher<Integer> decreasedBy(int number) {
+    private Matcher<Integer> decreasedBy(int number) {
         return increasedBy(-number);
     }
 
-    protected Matcher<Integer> negative() {
+    private Matcher<Integer> negative() {
         return lessThan(0);
     }
 
