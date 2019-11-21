@@ -1,28 +1,16 @@
 {
-  "name": "gilded-rose-kata",
+  "name": "electric-rose",
   "version": "1.0.0",
-  "description": "Gilded Rose kata in Javascript with Mocha",
-  "scripts": {
-    "test": "mocha --compilers js:babel/register"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/emilybache/GildedRose-Refactoring-Kata.git"
-  },
-  "keywords": [
-    "kata",
-    "refactor",
-    "gilded-rose"
-  ],
-  "license": "MIT",
-  "private": true,
-  "bugs": {
-    "url": "https://github.com/emilybache/GildedRose-Refactoring-Kata/issues"
-  },
-  "homepage": "https://github.com/emilybache/GildedRose-Refactoring-Kata",
+  "description": "Electric Rose Battery Tracker",
+  "author": "Peter 'Code Cop' Kofler",
+  "license": "BSD-3-Clause",
   "devDependencies": {
-    "babel": "^5.8.23",
-    "chai": "^4.2.0",
-    "mocha": "^5.2.0"
+    "@types/chai": "4.1.4",
+    "@types/mocha": "5.2.5",
+    "chai": "~4.1",
+    "mocha": "~5.2"
+  },
+  "scripts": {
+    "test": "mocha"
   }
 }
