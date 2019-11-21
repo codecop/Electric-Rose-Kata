@@ -4,18 +4,18 @@ public class Battery {
 
     public String type;
 
-    public int usages;
+    public boolean dry;
 
     public int charge;
 
-    public Battery(String type, int usages, int charge) {
+    public Battery(String type, boolean dry, int charge) {
         this.type = type;
-        this.usages = usages;
+        this.dry = dry;
         this.charge = charge;
     }
 
     @Override
     public String toString() {
-        return this.type + ", " + this.usages + ", " + this.charge;
+        return this.type + ", " + this.dry + ", " + this.charge;
     }
 }

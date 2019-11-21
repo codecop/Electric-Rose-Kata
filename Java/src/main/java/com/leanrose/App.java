@@ -5,8 +5,8 @@ public class App {
         System.out.println("BZZ ZZZ!");
 
         Battery[] batteries = new Battery[] { //
-                new Battery("Samsung Lithium-ion", 10, 20), //
-                new Battery("Budget Nickel Cadmium", 5, 7)}; //
+                new Battery("Samsung Lithium-ion", false, 20), //
+                new Battery("Budget Nickel Cadmium", false, 7)}; //
 
         ElectricRose app = new ElectricRose(batteries);
 
@@ -17,7 +17,7 @@ public class App {
 
         for (int i = 0; i < times; i++) {
             System.out.println("-------- usage " + i + " --------");
-            System.out.println("type, usages, charge");
+            System.out.println("type, dry, charge");
             for (Battery battery : batteries) {
                 System.out.println(battery);
             }

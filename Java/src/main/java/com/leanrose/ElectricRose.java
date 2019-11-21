@@ -13,9 +13,7 @@ class ElectricRose {
                 batteries[i].charge = batteries[i].charge - 1;
             }
 
-            batteries[i].usages = batteries[i].usages - 1;
-
-            if (batteries[i].usages < 0) {
+            if (batteries[i].dry) {
                 if (batteries[i].charge > 0) {
                     batteries[i].charge = batteries[i].charge - 1;
                 }
