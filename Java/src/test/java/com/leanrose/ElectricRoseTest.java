@@ -8,7 +8,7 @@ public class ElectricRoseTest {
 
     @Test
     public void foo() {
-        Battery[] batteries = new Battery[] { new Battery("foo", false, 0) };
+        Battery[] batteries = new Battery[] { new Battery("foo", false, 1) };
         ElectricRose app = new ElectricRose(batteries);
         app.updateCharge();
         assertEquals("fixme", app.batteries[0].type);
