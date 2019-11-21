@@ -6,9 +6,9 @@ public class Battery {
 
     public boolean dry;
 
-    public int charge;
+    public double charge;
 
-    public Battery(String type, boolean dry, int charge) {
+    public Battery(String type, boolean dry, double charge) {
         this.type = type;
         this.dry = dry;
         this.charge = charge;
