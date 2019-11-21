@@ -1,6 +1,6 @@
 # Electric Rose
 
-Small testing exercise inspired by the Gilded Rose from [Terry Hughes](http://iamnotmyself.com/2011/02/13/refactor-this-the-gilded-rose-kata/).
+Small testing exercise inspired by the [Gilded Rose](https://github.com/emilybache/GildedRose-Refactoring-Kata).
 
 ## License
 
