@@ -3,7 +3,7 @@
 target
 
 # IDEA
-.idea
+.idea/
 *.iml
 
 # Eclipse

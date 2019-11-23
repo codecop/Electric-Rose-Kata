@@ -1,13 +1,13 @@
 package com.leanrose;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ElectricRoseTest {
+class ElectricRoseTest {
 
     @Test
-    public void foo() {
+    void foo() {
         Battery[] batteries = new Battery[] { new Battery("foo", false, 1) };
         ElectricRose app = new ElectricRose(batteries);
         app.updateCharge();
