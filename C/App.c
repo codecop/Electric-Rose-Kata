@@ -1,4 +1,5 @@
-#include <stdio.h>
+#include <stdio.h>      /* printf */
+#include <stdlib.h>     /* atoi */
 #include "ElectricRose.h"
 
 int main(int argc, char *argv[])
@@ -11,9 +12,9 @@ int main(int argc, char *argv[])
     init_battery(batteries + last++, "Budget Nickel Cadmium", 0, 7);
 
     int times = 2;
-    // if (argc > 1) {
-    //     times = atoi(argv[1]) + 1;
-    // }
+    if (argc > 1) {
+        times = atoi(argv[1]) + 1;
+    }
 
     int i;
     int index;
