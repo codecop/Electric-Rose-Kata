@@ -3,7 +3,7 @@
 #include "ElectricRose.h"
 #define MAX(x, y) (((x) > (y)) ? (x) : (y))
 
-Battery* init_battery(Battery* battery, const char *type, int dry, double charge)
+Battery* init_battery(Battery* battery, const char *type, bool dry, float charge)
 {
     battery->dry = dry;
     battery->charge = charge;
