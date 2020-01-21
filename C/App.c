@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
     Battery batteries[2];
     int last = 0;
     init_battery(batteries + last++, "Samsung Lithium-ion", 0, 20);
-    init_battery(batteries + last++, "Budget Nickel Cadmium", 0, 7);
+    init_battery(batteries + last++, "Budget Nickel Cadmium", 1, 7);
 
     int times = 2;
     if (argc > 1) {
