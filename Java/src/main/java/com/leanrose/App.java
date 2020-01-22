@@ -6,7 +6,7 @@ public class App {
 
         Battery[] batteries = new Battery[] { //
                 new Battery("Samsung Lithium-ion", false, 20), //
-                new Battery("Budget Nickel Cadmium", false, 7)}; //
+                new Battery("Budget Nickel Cadmium", true, 7)}; //
 
         ElectricRose app = new ElectricRose(batteries);
 
