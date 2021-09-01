@@ -11,6 +11,7 @@
     "mocha": "~5.2"
   },
   "scripts": {
+    "start": "node src/app.js",
     "test": "mocha"
   }
 }
