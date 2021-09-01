@@ -2,9 +2,16 @@
     "compilerOptions": {
         "module": "commonjs",
         "target": "es5",
+        "sourceMap": false,
         "strict": true,
-        "noImplicitAny": false,
-        "sourceMap": false
+        "noImplicitAny": true,
+        "noImplicitThis": true,
+        "noImplicitReturns": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "forceConsistentCasingInFileNames": false,
+        "downlevelIteration": true,
+        "experimentalDecorators": true
     },
     "exclude": [
         "node_modules"
