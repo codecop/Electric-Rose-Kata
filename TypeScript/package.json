@@ -4,6 +4,7 @@
   "description": "Electric Rose Battery Tracker",
   "scripts": {
     "compile": "tsc",
+    "start": "./node_modules/.bin/ts-node app/app.ts",
     "test": "mocha"
   },
   "author": "Peter 'Code Cop' Kofler",
