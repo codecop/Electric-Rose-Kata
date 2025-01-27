@@ -1,0 +1,13 @@
+{
+  "name": "ElectricRose",
+  "version": "0.1.0",
+  "description": "Electric Rose Battery Tracker",
+  "author": "Peter 'Code Cop' Kofler",
+  "protos": [ "ElectricRose", "Battery", "App" ],
+  "dependencies": {
+    "libs": [],
+    "headers": [],
+    "protos": [],
+    "packages": []
+  }
+}
