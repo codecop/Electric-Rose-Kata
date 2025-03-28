@@ -10,3 +10,5 @@ target
 .settings
 .classpath
 .project
+
+IgnoreTest.java
