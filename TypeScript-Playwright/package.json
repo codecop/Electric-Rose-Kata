@@ -1,0 +1,20 @@
+{
+  "name": "@electric-rose/playwright-tests",
+  "version": "1.0.0",
+  "description": "Electric Rose Battery Tracker - Playwright Tests",
+  "author": "Dominik Niebuhr",
+  "license": "BSD-3-Clause",
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:ui": "playwright test --ui"
+  },
+  "dependencies": {
+    "@electric-rose/app": "file:../../app"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.40.0",
+    "@types/node": "~22.15.21",
+    "typescript": "~5.8.3"
+  }
+}
