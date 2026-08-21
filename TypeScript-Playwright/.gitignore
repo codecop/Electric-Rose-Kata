@@ -23,5 +23,5 @@ test/**/*.js.map
 *.iwr
 
 # Playwright
-**/playwright/**/playwright-report
-**/playwright/test-results/
+**/playwright-report
+test-results/
