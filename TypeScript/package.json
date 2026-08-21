@@ -4,16 +4,16 @@
   "description": "Electric Rose Battery Tracker",
   "scripts": {
     "compile": "tsc",
-    "start": "./node_modules/.bin/ts-node app/app.ts",
+    "start": "ts-node app/app.ts",
     "test": "mocha"
   },
   "author": "Peter 'Code Cop' Kofler",
   "license": "BSD-3-Clause",
   "devDependencies": {
-    "@types/chai": "5.2.2",
+    "@types/chai": "4.1.4",
     "@types/mocha": "10.0.10",
     "@types/node": "~22.15.21",
-    "chai": "~5.2",
+    "chai": "~4.1",
     "mocha": "~11.4",
     "source-map-support": "0.5.21",
     "ts-node": "~10.9.2",
