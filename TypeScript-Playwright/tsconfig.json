@@ -10,5 +10,7 @@
     "moduleResolution": "node",
     "resolveJsonModule": true
   },
-  "include": ["tests/**/*", "*.ts"]
+  "exclude": [
+      "node_modules"
+  ]
 }

@@ -5,16 +5,16 @@
   "author": "Dominik Niebuhr",
   "license": "BSD-3-Clause",
   "scripts": {
+    "compile": "tsc",
+    "start": "ts-node app/app.ts",
     "test": "playwright test",
     "test:headed": "playwright test --headed",
     "test:ui": "playwright test --ui"
   },
-  "dependencies": {
-    "@electric-rose/app": "file:../../app"
-  },
   "devDependencies": {
     "@playwright/test": "^1.40.0",
     "@types/node": "~22.15.21",
+    "ts-node": "~10.9.2",
     "typescript": "~5.8.3"
   }
 }
